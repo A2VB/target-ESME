@@ -22,7 +22,7 @@
 #'   bind_rows() %>%
 #'   filter(term == "dist")
 #
-#' targetesme::fct6.1_Pool(msum, n_events = 30, n_parameters = 2)
+#' fct6.0_Pool(msum, n_events = 30, n_parameters = 2)
 #'
 fct6.0_Pool <- function(x, n_events, n_parameters, alpha = 0.05){
 

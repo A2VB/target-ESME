@@ -1,7 +1,9 @@
 Package: targetesme
 Title: Collection of R functions implementing target trial emulation in the French ESME database 
 Version: 0.0.0.9000
-Authors: Alison Antoine, Youenn Drouet
+Authors@R: c(
+    person("Alison", "Antoine", email = "alison.antoine@lyon.unicancer.fr", role = c("aut", "cre")),
+    person("Youenn", "Drouet", email = "youenn.drouet@lyon.unicancer.fr", role = "aut"))
 Description: Collection of R functions developped during the Alison Antoine PhD thesis (2021-2024) that helps implementing target trial emulation methodology in the French ESME database.
 License: MIT + file LICENSE
 Encoding: UTF-8
@@ -16,6 +18,7 @@ Imports:
     RISCA,
     stats,
     survival,
-    tidyr
+    tidyr,
+	survey
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3

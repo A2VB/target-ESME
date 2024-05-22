@@ -1,5 +1,5 @@
 usethis::use_git()
-usethis::use_git_config(user.name = "A2VB", user.email = "alison.antoine@gmail.com")
+usethis::use_git_config(user.name = "A2VB", user.email = "alison.antoine@icloud.com")
 
 # git config --global --add safe.directory "*"
 
@@ -16,3 +16,5 @@ usethis::use_git_ignore("devtools_history.R")
 
 usethis::use_pkgdown_github_pages()
 usethis::use_version()
+
+devtools::build_readme()

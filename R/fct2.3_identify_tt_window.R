@@ -1,5 +1,5 @@
 
-#' Fonction qui filtre sur la grace period
+#' Function that filters according to time window eligibility
 #'
 #' @param dv to be completed
 #' @param dd to be completed
@@ -13,7 +13,7 @@
 #' @examples
 #' #to be completed
 #'
-fct2.3_identify_tt_grace <- function(dv, dd, diag_dt, delay1, delay2){
+fct2.3_identify_tt_window <- function(dv, dd, diag_dt, delay1, delay2){
 
   ## dv must be a long format data set that contains treatment/surgery/procedure/histology data and must contains "usubjid" = id name var
   ## dd must be a wide format data set and must contains: "usubjid" = id name var, "ARM" = treatment arm name var & "T0" = index date name var
@@ -31,14 +31,14 @@ fct2.3_identify_tt_grace <- function(dv, dd, diag_dt, delay1, delay2){
     dplyr::left_join(select(dd, usubjid, ARM, T0, diag_dt),by = "usubjid") %>%
 
     ## Identification of rows in dv compatible with treatment start date was more than X days (delay1) prior to diag_dt or more than X days (delay2) after diag_dt:
-    ## Identification of procedures/treatments/... that have been initiated within the grace period
+    ## Identification of procedures/treatments/... that have been initiated within specified time window
     dplyr::mutate(delaydt = (as.Date(T0) - as.Date(!!as.symbol(diag_dt))),
            out = ifelse((delaydt >= delay1) & (delaydt <= delay2), 0, 1)) %>%
 
-    ## Filtering procedures/treatments/... that have been initiated wihtin the grace period
+    ## Filtering procedures/treatments/... that have been initiated within  specified time window
     dplyr::filter(out==1)
 
-  ## Creating a new variable "excluded" that takes TRUE when IDs of dd are found in dv2: Identification of IDs in dd who initiated the treatments within the grace period
+  ## Creating a new variable "excluded" that takes TRUE when IDs of dd are found in dv2: Identification of IDs in dd who initiated the treatments within specified time window
   dd2 <- dd %>%
     dplyr::mutate(excluded = ifelse(usubjid %in% dv2$usubjid, TRUE, FALSE)) %>%
     dplyr::relocate(excluded, .after = "ARM")

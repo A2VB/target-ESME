@@ -16,5 +16,6 @@
 #' @importFrom forcats fct_rev
 #' @importFrom broom tidy
 #' @importFrom RISCA gc.survival
+#' @importFrom survey svydesign
 ## usethis namespace: end
 NULL
